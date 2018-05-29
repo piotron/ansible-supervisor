@@ -4,4 +4,11 @@
   service:
     name: supervisor
     state: restarted
+  register: superviosr-restarted
   when: service_default_state | default('started') == 'started'
+
+- name: reload supervisor config
+  comnmand: supervisorctl update all
+  when: 
+    - service_default_state | default('started') == 'started'
+    - supervisor-restarted is not defined

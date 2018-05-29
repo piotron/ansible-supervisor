@@ -9,6 +9,4 @@
 
 - name: reload supervisor config
   command: supervisorctl update all
-  when: 
-    - service_default_state | default('started') == 'started'
-    - supervisor-restarted is not defined
+  when: service_default_state | default('started') == 'started'
